@@ -6,12 +6,14 @@ class del extends React.Component {
     componentDidMount(){
         const{ match:{params}}=this.props
         //params.id
+        
         api.SendDel("paket",[params.id]).then(function(result) {
             console.log(result)
+            api.SendDel("narocila",[params.id]).then(function(result) {
+                console.log(result)
+            })
         })
-        api.SendDel("narocila",[params.id]).then(function(result) {
-            console.log(result)
-        })
+        
         window.open('/Home','_self');
     }
     render() {

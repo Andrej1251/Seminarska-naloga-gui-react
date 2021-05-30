@@ -8,17 +8,35 @@ class homeR extends React.Component {
     componentDidMount(){
         const cookies = new Cookies();
         var button = document.getElementById("user");
-        
+        var button2 = document.getElementById("user2");
+        var button3 = document.getElementById("user3");
         if(cookies.get('user').Tip_uporabnika===3){
             button.style.visibility="visible"
-        }else button.style.visibility="hidden"
-
+        }else button.style.visibility="collapse"
+        if(cookies.get('user').Tip_uporabnika===1){
+            button2.style.visibility="visible"
+            button3.style.visibility="visible"
+        }else {button2.style.visibility="collapse";button3.style.visibility="collapse"}
         
         //create massive list of all data
         api.SendGet("narocila").then(result => { //get all narocila
             result.forEach(element => {
-                
                 const newDiv = document.createElement("div");
+                if(element.TK_Uporabnik!==cookies.get('user').ID_Uporabnik && cookies.get('user').Tip_uporabnika===2){
+                    return;
+                }else{
+                    const a=document.createElement("button");
+                    a.innerHTML="activate"
+                    a.onclick = function () {
+                        element.Active=1
+                        api.SendUpdate("narocila",[element.ID_Naročila,element.TK_Uporabnik,element.TK_Naslov_posiljatelja,element.Active,element.DatumPrejetja,element.DatumPoslanosti]).then(result => {
+                            console.log(result)
+                        })
+                    };
+                    a.className="m-2 float-right btn btn-success"
+                    newDiv.appendChild(a)
+                }
+
                 if(cookies.get('user').Tip_uporabnika!==2){
                     const a=document.createElement("a");
                     a.href="/DelOrder/"+element.ID_Naročila
@@ -103,7 +121,9 @@ class homeR extends React.Component {
     render() {
         return (
             <div>
-                <a href="/sellerHome" type="button" visibility="hidden" className="m-2 float-right btn btn-success" id="user">Add new order</a>
+                <a href="/sellerHome" type="button" visibility="collapse" className="m-2 float-right btn btn-success" id="user">Add new order</a>
+                <a href="/adminHome" type="button" visibility="collapse" className="m-2 float-right btn btn-success" id="user2">Add new address</a>
+                <a href="/users" type="button" visibility="collapse" className="m-2 float-right btn btn-success" id="user3">Add new user</a>
                 <h2 className="m-2 display-5">orders: </h2>
                 <div className="mt-5 container" id="fulldata">
                 </div>

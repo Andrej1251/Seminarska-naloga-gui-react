@@ -7,6 +7,8 @@ import SellerHome from './components/SellerHome';
 import AddPackages from './components/AddPackages';
 import Home from './components/Home';
 import DelOrder from './components/DelOrder';
+import AdminHome from './components/AdminHome';
+import Users from './components/Users';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 function Setup(){
@@ -17,7 +19,8 @@ function Setup(){
       <Route path="/sellerHome/:id" component={AddPackages}></Route>
       <Route path="/Home" component={Home}></Route>
       <Route path="/DelOrder/:id" component={DelOrder}></Route>
-
+      <Route path="/adminHome" component={AdminHome}></Route>
+      <Route path="/users" component={Users}></Route>
     </div>
   )
 }
