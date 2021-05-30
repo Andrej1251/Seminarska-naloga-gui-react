@@ -31,6 +31,7 @@ class homeR extends React.Component {
                         element.Active=1
                         api.SendUpdate("narocila",[element.ID_Naročila,element.TK_Uporabnik,element.TK_Naslov_posiljatelja,element.Active,element.DatumPrejetja,element.DatumPoslanosti]).then(result => {
                             console.log(result)
+                            window.open('/Home','_self');
                         })
                     };
                     a.className="m-2 float-right btn btn-success"
