@@ -24,7 +24,7 @@ class homeR extends React.Component {
                 const newDiv = document.createElement("div");
                 if(element.TK_Uporabnik!==cookies.get('user').ID_Uporabnik && cookies.get('user').Tip_uporabnika===2){
                     return;
-                }else{
+                }else if(cookies.get('user').Tip_uporabnika!==3){
                     const a=document.createElement("button");
                     a.innerHTML="activate"
                     a.onclick = function () {

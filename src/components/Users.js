@@ -9,7 +9,7 @@ class user extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange  = this.handleChange.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
-        this.state = {Name:'',Surname:'',Password:'',Location:0,Username:'',Date:'',User:0};
+        this.state = {Name:'',Surname:'',Password:'',Location:0,Username:'',Date:'',User:0,Email:''};
     }
     handleChange = (event) => {
         //update data if changed
@@ -35,7 +35,7 @@ class user extends React.Component {
     handleSubmit(event) {
         var paragraph = document.getElementById("ErrorVal");
         paragraph.innerHTML = "";
-        api.SendPost("uporabnik",[this.state.Name,this.state.Surname,this.state.Username,this.state.Password,this.state.Location,this.state.Date,this.state.User]).then(function(result) {
+        api.SendPost("uporabnik",[this.state.Name,this.state.Surname,this.state.Username,this.state.Password,this.state.Location,this.state.Date,this.state.User,this.state.Email]).then(function(result) {
             if(typeof result.insertId!=="undefined"){
                 paragraph.className="m-2 p-1 bg-success rounded text-white"
                 paragraph.innerHTML = 'sucess!';
@@ -61,6 +61,8 @@ class user extends React.Component {
                         <Form.Control className="mdb-select md-form" name="Surname"  autoComplete="off"  onChange={this.handleChange} value={this.state.value} />
                         <Form.Label>Username:</Form.Label>
                         <Form.Control className="mdb-select md-form" name="Username"  autoComplete="off" onChange={this.handleChange} value={this.state.value} />
+                        <Form.Label>email:</Form.Label>
+                        <Form.Control className="mdb-select md-form" name="Email"  autoComplete="off" onChange={this.handleChange} value={this.state.value} />
                         <Form.Label>Password:</Form.Label>
                         <Form.Control className="mdb-select md-form" name="Password"  autoComplete="off" onChange={this.handleChange} value={this.state.value} />
                         <Form.Label>Add location:</Form.Label>
