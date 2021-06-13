@@ -9,6 +9,8 @@ import Home from './components/Home';
 import DelOrder from './components/DelOrder';
 import AdminHome from './components/AdminHome';
 import Users from './components/Users';
+import HomeFaceScan from './components/HomeFaceScan';
+
 import {BrowserRouter, Route} from 'react-router-dom';
 
 function Setup(){
@@ -21,6 +23,7 @@ function Setup(){
       <Route path="/DelOrder/:id" component={DelOrder}></Route>
       <Route path="/adminHome" component={AdminHome}></Route>
       <Route path="/users" component={Users}></Route>
+      <Route path="/HomeFaceScan" component={HomeFaceScan}></Route>
     </div>
   )
 }
